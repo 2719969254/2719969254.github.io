@@ -75,7 +75,7 @@
   <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
 
 
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-32x32-next.png?v=5.1.4">
 
 
   <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
@@ -84,7 +84,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT">
+  <meta name="keywords" content="线程,进程,线程和进程,">
 
 
 
@@ -95,17 +95,21 @@
 
 
 
-<meta name="description" content="AV.initialize(&quot;&quot;, &quot;&quot;); //需要写上leancloud的key    var time=0   var title=&quot;&quot;   var url=&quot;&quot;   var query = new AV.Query(&apos;Counter&apos;);//表名   query.notEqualTo(&apos;id&apos;,0); //id不为0的结果   query.descending(&apos;time&apos;); //结果">
+<meta name="description" content="线程和进程概念进程（process）：是指具有已一定功能的独立程序，是系统资源分配的基本单位，在内存中有其完备的数据空间和代码空间，拥有完整的虚拟空间地址。一个进程所拥有的数据和变量只属于它自己。 线程（thread）：是进程内相对独立的可执行单元，所以也被称为轻量进程（lightweight processes）；是操作系统进行任务调度的基本单元。它与父进程的其它线程共享该进程所拥有的全部代码空">
+<meta name="keywords" content="线程,进程,线程和进程">
 <meta property="og:type" content="article">
-<meta property="og:title" content="page">
+<meta property="og:title" content="线程和进程">
 <meta property="og:url" content="http://yoursite.com/2019/07/04/1/index.html">
 <meta property="og:site_name" content="田祚的个人博客">
-<meta property="og:description" content="AV.initialize(&quot;&quot;, &quot;&quot;); //需要写上leancloud的key    var time=0   var title=&quot;&quot;   var url=&quot;&quot;   var query = new AV.Query(&apos;Counter&apos;);//表名   query.notEqualTo(&apos;id&apos;,0); //id不为0的结果   query.descending(&apos;time&apos;); //结果">
+<meta property="og:description" content="线程和进程概念进程（process）：是指具有已一定功能的独立程序，是系统资源分配的基本单位，在内存中有其完备的数据空间和代码空间，拥有完整的虚拟空间地址。一个进程所拥有的数据和变量只属于它自己。 线程（thread）：是进程内相对独立的可执行单元，所以也被称为轻量进程（lightweight processes）；是操作系统进行任务调度的基本单元。它与父进程的其它线程共享该进程所拥有的全部代码空">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-07-04T01:28:56.977Z">
+<meta property="og:image" content="http://www.2cto.com/shouce/Nginx/_images/chapter-2-1.PNG">
+<meta property="og:image" content="http://yoursite.com/images/Picture1.jpg">
+<meta property="og:updated_time" content="2019-07-04T04:44:11.236Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="page">
-<meta name="twitter:description" content="AV.initialize(&quot;&quot;, &quot;&quot;); //需要写上leancloud的key    var time=0   var title=&quot;&quot;   var url=&quot;&quot;   var query = new AV.Query(&apos;Counter&apos;);//表名   query.notEqualTo(&apos;id&apos;,0); //id不为0的结果   query.descending(&apos;time&apos;); //结果">
+<meta name="twitter:title" content="线程和进程">
+<meta name="twitter:description" content="线程和进程概念进程（process）：是指具有已一定功能的独立程序，是系统资源分配的基本单位，在内存中有其完备的数据空间和代码空间，拥有完整的虚拟空间地址。一个进程所拥有的数据和变量只属于它自己。 线程（thread）：是进程内相对独立的可执行单元，所以也被称为轻量进程（lightweight processes）；是操作系统进行任务调度的基本单元。它与父进程的其它线程共享该进程所拥有的全部代码空">
+<meta name="twitter:image" content="http://www.2cto.com/shouce/Nginx/_images/chapter-2-1.PNG">
 
 
 
@@ -141,7 +145,7 @@
 
 
 
-  <title>page | 田祚的个人博客</title>
+  <title>线程和进程 | 田祚的个人博客</title>
   
 
 
@@ -296,7 +300,7 @@
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/07/04/1/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="tianzuo">
+      <meta itemprop="name" content="田祚">
       <meta itemprop="description" content>
       <meta itemprop="image" content="/images/avatar.gif">
     </span>
@@ -310,7 +314,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">page</h1>
+          <h1 class="post-title" itemprop="name headline">线程和进程</h1>
         
 
         <div class="post-meta">
@@ -322,7 +326,7 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-07-04T09:28:23+08:00">
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-07-04T11:24:40+08:00">
                 2019-07-04
               </time>
             
@@ -360,30 +364,32 @@
       
 
       
-        <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
-<script>AV.initialize("", "");</script> //需要写上leancloud的key
-<script type="text/javascript">
-  var time=0
-  var title=""
-  var url=""
-  var query = new AV.Query('Counter');//表名
-  query.notEqualTo('id',0); //id不为0的结果
-  query.descending('time'); //结果按阅读次数降序排序
-  query.limit(20);  //最终只返回10条结果
-  query.find().then(function (todo) {
-    for (var i=0;i<10;i++){ 
-      var result=todo[i].attributes;
-      time=result.time;  //阅读次数
-      title=result.title; //文章标题
-      url=result.url;     //文章url
-      var content="<p>"+"<font color='#0477ab'>"+"【阅读次数:"+time+"】"+"<a href='"+"http://thief.one"+url+"'>"+title+"</font>"+"</a>"+"</p>";
-      // document.write("<a href='"+"http://thief.one/"+url+"'>"+title+"</a>"+"    Readtimes:"+time+"<br>");
-      document.getElementById("heheda").innerHTML+=content
-    }
-  }, function (error) {
-    console.log("error");
-  });
-</script>
+        <h1 id="线程和进程"><a href="#线程和进程" class="headerlink" title="线程和进程"></a>线程和进程</h1><h2 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h2><p>进程（process）：是指具有已一定功能的独立程序，是系统资源分配的基本单位，在内存中有其完备的数据空间和代码空间，拥有完整的虚拟空间地址。一个进程所拥有的数据和变量只属于它自己。</p>
+<p>线程（thread）：是进程内相对独立的可执行单元，所以也被称为轻量进程（lightweight processes）；是操作系统进行任务调度的基本单元。它与父进程的其它线程共享该进程所拥有的全部代码空间和全局变量，但拥有独立的堆栈（即<strong>局部变量对于线程来说是私有的</strong>）。</p>
+<h2 id="联系"><a href="#联系" class="headerlink" title="联系"></a>联系</h2><p>进程和线程都具有就绪、阻塞和运行三种基本状态。</p>
+<p> 一个进程至少拥有一个线程——主线程，也可以拥有多个线程；一个线程必须且仅有一个父进程。多个进程可以并发执行；一个线程可以创建和撤销另一个线程；同一个进程中的多个线程之间可以并发执行。</p>
+<p>支援分配给进程，同一进程的所有线程共享该进程的所有资源</p>
+<p>线程在执行过程中，需要协作同步。不同进程的线程间要利用消息通信的办法实现同步</p>
+<p>处理机分给线程，即真正在处理机上运行的是线程</p>
+<p>线程是指进程内的一个执行单元，也是进程内的可调度实体。</p>
+<h2 id="区别"><a href="#区别" class="headerlink" title="区别"></a>区别</h2><p>进程和线程的主要差别在于它们是不同的操作系统资源管理方式。当然也在系统开销方面有一些体现。</p>
+<p>系统开销：在创建或撤消进程时，由于系统都要为之分配和回收资源，导致系统的开销明显<strong>大于创建或撤消线程时的开销</strong></p>
+<p>资源管理：进程有独立的地址空间，一个进程崩溃后，在保护模式下不会对其它进程产生影响，而线程只是一个进程中的不同执行路径。线程有自己的堆栈和局部变量，但线程之间没有单独的地址空间，一个线程死掉就等于整个进程死掉，（当一个线程向非法地址读取或者写入，无法确认这个操作是否会影响同一进程中的其它线程，所以只能是整个进程一起崩溃。）所以多进程的程序要比多线程的程序健壮，但在进程切换时，耗费资源较大，效率要差一些。但对于一些要求同时进行并且又要共享某些变量的并发操作，只能用线程，不能用进程。一个进程的开销大约是一个线程开销的30倍左右</p>
+<h2 id="优缺点"><a href="#优缺点" class="headerlink" title="优缺点"></a>优缺点</h2><p>线程和进程在使用上各有优缺点：线程执行开销小，但不利于资源的管理和保护；而进程正相反。同时，线程适合于在SMP机器上运行，而进程则可以跨机器迁移。</p>
+<h2 id="多进程单线程模型"><a href="#多进程单线程模型" class="headerlink" title="多进程单线程模型"></a>多进程单线程模型</h2><p>master进程管理worker进程：</p>
+<ul>
+<li>接收来自外界的信号</li>
+<li>向各worker进程发送信号</li>
+<li>监控woker进程的运行状态</li>
+<li>当woker进程退出后（异常情况下），会自动重新启动新的woker进程</li>
+</ul>
+<p><img src="http://www.2cto.com/shouce/Nginx/_images/chapter-2-1.PNG" alt></p>
+<p>这种模型提供了一种保护机制。<strong>当其中一个进程内部读取错误，master可以让错误进程重启。这使得你的服务器在表面上并没有感到“曾经崩溃”。</strong></p>
+<p>对于<strong>master</strong>，完全不涉及服务器的业务，使得错误进程能被安全隔离。</p>
+<h2 id="单进程多线程"><a href="#单进程多线程" class="headerlink" title="单进程多线程"></a>单进程多线程</h2><p>主线程负责监听客户端的连接请求，workers线程负责处理已经建立好的连接的读写等事件</p>
+<p><img src="/images/Picture1.jpg" alt></p>
+<p><strong>一旦其中出现一个错误，整个进程都有可能挂掉。你当然可以为此进程编写一个“守护程序”来重启，但是重启期间，你的服务器是真的“挂掉了”。</strong></p>
+
       
     </div>
     
@@ -398,27 +404,21 @@
 
     <footer class="post-footer">
       
-
-      
-      
-      
-
-      
-        <div class="post-nav">
-          <div class="post-nav-next post-nav-item">
-            
-              <a href="/2019/07/04/HelloWord/" rel="next" title="HelloWord">
-                <i class="fa fa-chevron-left"></i> HelloWord
-              </a>
-            
-          </div>
-
-          <span class="post-nav-divider"></span>
-
-          <div class="post-nav-prev post-nav-item">
-            
-          </div>
+        <div class="post-tags">
+          
+            <a href="/tags/线程/" rel="tag"># 线程</a>
+          
+            <a href="/tags/进程/" rel="tag"># 进程</a>
+          
+            <a href="/tags/线程和进程/" rel="tag"># 线程和进程</a>
+          
         </div>
+      
+
+      
+      
+      
+
       
 
       
@@ -467,13 +467,22 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
-              <p class="site-author-name" itemprop="name">tianzuo</p>
-              <p class="site-description motion-element" itemprop="description"></p>
+              <p class="site-author-name" itemprop="name">田祚</p>
+              <p class="site-description motion-element" itemprop="description">个人博客</p>
           </div>
 
           <nav class="site-state motion-element">
@@ -483,7 +492,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-count">1</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -496,7 +505,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-count">3</span>
                   <span class="site-state-item-name">tags</span>
                 </a>
               </div>
@@ -520,6 +529,22 @@
       </section>
 
       
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#线程和进程"><span class="nav-number">1.</span> <span class="nav-text">线程和进程</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#概念"><span class="nav-number">1.1.</span> <span class="nav-text">概念</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#联系"><span class="nav-number">1.2.</span> <span class="nav-text">联系</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#区别"><span class="nav-number">1.3.</span> <span class="nav-text">区别</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#优缺点"><span class="nav-number">1.4.</span> <span class="nav-text">优缺点</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#多进程单线程模型"><span class="nav-number">1.5.</span> <span class="nav-text">多进程单线程模型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#单进程多线程"><span class="nav-number">1.6.</span> <span class="nav-text">单进程多线程</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
 
       
 
@@ -537,7 +562,7 @@
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>
-  <span class="author" itemprop="copyrightHolder">tianzuo</span>
+  <span class="author" itemprop="copyrightHolder">田祚</span>
 
   
 </div>
