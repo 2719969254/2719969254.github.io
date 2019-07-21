@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2019-07-04T05:12:02.393Z</updated>
+  <updated>2019-07-21T01:29:54.090Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,6 +15,27 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Java实现 Serializable 序列化</title>
+    <link href="http://yoursite.com/2019/07/21/1/"/>
+    <id>http://yoursite.com/2019/07/21/1/</id>
+    <published>2019-07-21T01:28:57.000Z</published>
+    <updated>2019-07-21T01:29:54.090Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="深度理解Java实现-Serializable-序列化"><a href="#深度理解Java实现-Serializable-序列化" class="headerlink" title="深度理解Java实现 Serializable 序列化"></a>深度理解Java实现 Serializable 序列化</h2><h3 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h3><p>把对象转换为直接序列的过程叫对象的序列化</p><p>把字节序列恢复为对象的过程叫对象的反序列化</p><h3 id="用途"><a href="#用途" class="headerlink" title="用途"></a>用途</h3><ol><li>对象持久化</li><li>跨网络数据交换，远程过程调用</li></ol><p>对象持久化意味着一个对象的生命周期可以不取决于程序是否运行，实现序列化的对象可以生存在程序的调用之间。通过一个序列化的对象写在磁盘中，然后再调用期间恢复这个对象就可以实现对象持久化的效果</p><p>序列化可以弥补不同操作系统之间的差异，在某台电脑上创建一个的对象，将其序列化。通过网络传输就可以将其发送到另一台<strong>不同操作系统</strong>的电脑上，然后在那里准确的组装出这个对象不必关心字节的顺序或者其他细节。所以在向远程对象发送消息时，必须通过对象序列化来传输参数和返回值。</p><h3 id="内部实现"><a href="#内部实现" class="headerlink" title="内部实现"></a>内部实现</h3><p>让要实现序列化的类实现<code>java.io.Serializable</code>接口</p><p>需要注意的是Serializable没有定义任何方法，只是一个标记接口。</p><p>对象序列化是基于字节的，因此需要OutputStream和InputStream继承层次结构。</p><p>序列化对象过程：在序列化一个对象的过程中，会创建某些OutPutStream对象，将其封装在一个ObjectOutputStream对象内，之后调用writeObject()方法序列化对象。</p><p>反序列化对象：创建某些InputStream对象，并将其封装在一个ObjectInputStream 对象内，之后调用readObject（）方法反序列化对象。</p><p>反序列化最后得到的是一个指向Object的引用，所以必须向下转型为指定类型的对象</p><h3 id="序列化控制"><a href="#序列化控制" class="headerlink" title="序列化控制"></a>序列化控制</h3><p>默认的序列化机制已经很强大了，它可以自动将对象中的所有字段自动保存和恢复，但这种默认行为有时候不是我们想要的。比如，对于有些字段，它的值可能与内存位置有关，比如默认的hashCode()方法的返回值，当恢复对象后，内存位置肯定变了，基于原内存位置的值也就没有了意义。还有一些字段，可能与当前时间有关，比如表示对象创建时的时间，保存和恢复这个字段就是不正确的。</p><p>还有一些情况，如果类中的字段表示的是类的实现细节，而非逻辑信息，那默认序列化也是不适合的。为什么不适合呢？因为序列化格式表示一种契约，应该描述类的逻辑结构，而非与实现细节相绑定，绑定实现细节将使得难以修改，破坏封装。</p><p>Java提供了多种定制序列化的机制，主要的有三种，一种是transient关键字，另外一种是实现Externalizable接口代替实现Serializable，还有一种是实现writeObject和readObject方法。</p><p>将字段声明为transient，默认序列化机制将忽略该字段，不会进行保存和恢复。<br>比如上面的第一个实例中，假设我们在进行序列化和反序列化时不需要保存和恢复no字段的信息，那么我们可以在no字段前面加上一个transient修饰符。</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">private transient String no;</span><br></pre></td></tr></table></figure><p>运行程序我们会得到如下的结果：</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">------------------序列化前--------------</span><br><span class="line">[HashCode:366712642 学号:001 姓名:Ron 班级：Class 001, HashCode:1829164700 学号:002 姓名:Ron2 班级：Class 002]</span><br><span class="line">------------------反序列化后--------------</span><br><span class="line">[HashCode:2133927002 学号:null 姓名:Ron 班级：Class 001, HashCode:1836019240 学号:null 姓名:Ron2 班级：Class 002]</span><br></pre></td></tr></table></figure><p>我们可以到no字段的内容反序列化之后变成了null。将字段声明为transient，不是说就不保存该字段了，而是告诉Java默认序列化机制，不要自动保存该字段了。</p><h3 id="利用Serializable定义数据类型"><a href="#利用Serializable定义数据类型" class="headerlink" title="利用Serializable定义数据类型"></a>利用Serializable定义数据类型</h3><p>在阅读源码时，遇到一些比较抽象的方法，发现他们定义的数据类型都是用Serializable来定义，比如</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">public void deleteEntriesByIDS(Serializable[] tds);</span><br><span class="line"> </span><br><span class="line">public void deleteEntry(Serializable id);</span><br></pre></td></tr></table></figure><p>这样做的原因是它可以接受多种数据类型，比如String，Integer，Long等，他们都实现了Serizlizable接口。同时JDK1,.5以后有了自动拆装箱的特征，所以均可被以上Serializable定义参数方法接受，这样做的目的就是可以节省代码，提高代码利用率。</p><p>有的方法也会利用它做返回值，同理</p><h3 id="serialVersionUID的作用"><a href="#serialVersionUID的作用" class="headerlink" title="serialVersionUID的作用"></a>serialVersionUID的作用</h3><p>序列化的作用是将对象的状态信息转换为可存储过程或传输形式的过程。Java对象是保存在JVM的堆内存里的，也就是说如果JVM堆不存在了，那么对象也就消失。而序列化提供了一种方案是：即使JVM停机的情况下也能把对象保存下来（把Java对象序列化成可存储或传输的形式，比如保存在文件中。下次需要这个对象时就可以从文件中读取出二进制流，再从二进制流中反序列化出对象）</p><p>虚拟机是否允许反序列化，不仅取决于类路径和功能代码是否一致。还有一个非常重要的点是对比两个类的序列化ID（serialVersionUID）是否一致。</p><p>如果两个类的serialVersionUID不一致，在反序列化时就会抛出<code>java.io.InvalidClassException</code>，并且指出<code>serialVersionUID</code>不一致。</p><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">java.io.InvalidClassException: com.hollis.User1; local class incompatible: stream classdesc serialVersionUID = 1, local class serialVersionUID = 2</span><br></pre></td></tr></table></figure><p>这是因为，在进行反序列化时，JVM会把传来的字节流中的<code>serialVersionUID</code>与本地相应实体类的<code>serialVersionUID</code>进行比较，如果相同就认为是一致的，可以进行反序列化，否则就会出现序列化版本不一致的异常，即是<code>InvalidCastException</code>。</p><p>所以在《阿里巴巴Java开发手册》中才会有：在兼容性升级中，在修改类的时候，不要修改<code>serialVersionUID</code>的原因。<strong>除非是完全不兼容的两个版本</strong>。所以，<strong>serialVersionUID其实是验证版本一致性的。</strong></p><p>如果一个类实现了<code>Serializable</code>接口，就必须手动添加一个<code>private static final long serialVersionUID</code>变量，并且设置初始值。如果不添加的话，系统会自己添加一个serialVersionUID，只要类稍加改变，就会重新生成，导致版本不兼容</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h2 id=&quot;深度理解Java实现-Serializable-序列化&quot;&gt;&lt;a href=&quot;#深度理解Java实现-Serializable-序列化&quot; class=&quot;headerlink&quot; title=&quot;深度理解Java实现 Serializable 序列化&quot;&gt;&lt;/a&gt;深度理解J
+      
+    
+    </summary>
+    
+    
+  </entry>
   
   <entry>
     <title>线程和进程</title>
